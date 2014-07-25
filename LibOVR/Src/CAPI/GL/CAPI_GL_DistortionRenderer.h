@@ -47,9 +47,9 @@ public:
     virtual bool Initialize(const ovrRenderAPIConfig* apiConfig,
                             unsigned distortionCaps);
 
-    virtual void SubmitEye(int eyeId, ovrTexture* eyeTexture);
+    virtual void SubmitEye(int eyeId, const ovrTexture* eyeTexture);
 
-    virtual void EndFrame(bool swapBuffers, unsigned char* latencyTesterDrawColor, unsigned char* latencyTester2DrawColor);
+    virtual void EndFrame(bool swapBuffers);
 
     void         WaitUntilGpuIdle();
 
@@ -144,6 +144,8 @@ protected:
     void renderLatencyQuad(unsigned char* latencyTesterDrawColor);
     void renderLatencyPixel(unsigned char* latencyTesterPixelColor);
 	
+    void renderEndFrame();
+
     Ptr<Texture>        pEyeTextures[2];
 
 	Ptr<Buffer>         DistortionMeshVBs[2];    // one per-eye
@@ -161,6 +163,7 @@ protected:
 	GLuint              LatencyVAO;
     Ptr<Buffer>         LatencyTesterQuadVB;
     Ptr<ShaderSet>      SimpleQuadShader;
+    Ptr<ShaderSet>      SimpleQuadGammaShader;
 
     Ptr<Texture>             CurRenderTarget;
     Array<Ptr<Texture> >     DepthBuffers;

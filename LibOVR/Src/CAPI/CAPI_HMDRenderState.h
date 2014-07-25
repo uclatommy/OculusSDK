@@ -30,11 +30,12 @@ limitations under the License.
 #include "../OVR_CAPI.h"
 #include "../Kernel/OVR_Math.h"
 #include "../Util/Util_Render_Stereo.h"
-
+#include "../Service/Service_NetSessionCommon.h"
 
 namespace OVR { namespace CAPI {
 
 using namespace OVR::Util::Render;
+
 
 //-------------------------------------------------------------------------------------
 // ***** HMDRenderState
@@ -50,9 +51,7 @@ struct HMDRenderState
     ovrSizei            GetFOVTextureSize(int eye, ovrFovPort fov, float pixelsPerDisplayPixel) const;
     ovrEyeRenderDesc    CalcRenderDesc(ovrEyeType eyeType, const ovrFovPort& fov) const;
 
-
-    // HMDInfo shouldn't change after init, as its string pointers are passed out.
-    const OVR::HMDInfo*     pHMDInfo;
+    HMDInfo                 OurHMDInfo;
 
     HmdRenderInfo           RenderInfo;
     DistortionRenderDesc    Distortion[2];
@@ -72,7 +71,4 @@ struct HMDRenderState
 
 }} // namespace OVR::CAPI
 
-
 #endif // OVR_CAPI_HMDState_h
-
-

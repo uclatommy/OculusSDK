@@ -28,13 +28,14 @@ limitations under the License.
 #define UTIL_IMAGEWINDOW_H
 
 #if defined(OVR_OS_WIN32)
-#define WIN32_LEAN_AND_MEAN 1
-#include <windows.h>
+#include <WinSock2.h>
+#include <WS2tcpip.h>
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 #include <d2d1.h>
 #include <dwrite.h>
 #endif
 
-#include "../../Include/OVR.h"
 #include "../Kernel/OVR_Hash.h"
 #include "../Kernel/OVR_Array.h"
 #include "../Kernel/OVR_Threads.h"

@@ -43,7 +43,7 @@ enum SerialFormatType
 };
 
 // Returns the expected serial format based on the first byte of the buffer
-SerialFormatType DetectBufferFormat(UByte firstByte, int sizeInBytes);
+SerialFormatType DetectBufferFormat(uint8_t firstByte, int sizeInBytes);
 
 
 //-----------------------------------------------------------------------------
@@ -78,16 +78,16 @@ public:
 	// [0] = high byte, [1] = middle byte, [2] = low byte
 	int          UnitNumber;        // [2 bytes] Value that increments each time a new serial number is created.  Resets to zero each day
 	// [0] = high byte, [1] = low byte
-	UByte        MacHash[5];        // [5 bytes] 5 most significant bytes of MD5 hash from first ethernet adapter mac address
+	uint8_t      MacHash[5];        // [5 bytes] 5 most significant bytes of MD5 hash from first ethernet adapter mac address
 
 	bool operator==(const DK2BinarySerialFormat& rhs);
 
 public:
 	// Returns false if the input is invalid in some way
-	bool FromBuffer(const UByte buffer[12], bool allowUnknownTypes = false);
+	bool FromBuffer(const uint8_t buffer[12], bool allowUnknownTypes = false);
 
 	// Fills the provided buffer with 12 bytes
-	void ToBuffer(UByte buffer[12]);
+	void ToBuffer(uint8_t buffer[12]);
 };
 
 
@@ -99,7 +99,7 @@ public:
 	DK2LabelType LabelType;         // [1 char] 0 means HMD, 1 means PTC(camera), 2 means Overpack(bundle)
 	int          MinutesSinceEpoch; // [4 char] Number of minutes that have elapsed since the epoch: May 1st, 2014
 	int          UnitNumber;        // [3 char] Value that increments each time a new serial number is created.  Resets to zero each day
-	UByte        MacHashLow[3];     // [3 char] 3 least significant bytes of mac hash
+	uint8_t      MacHashLow[3];     // [3 char] 3 least significant bytes of mac hash
 
 	bool operator==(const DK2PrintedSerialFormat& rhs);
 	bool operator==(const DK2BinarySerialFormat& rhs);

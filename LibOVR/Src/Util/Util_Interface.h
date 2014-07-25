@@ -1,6 +1,5 @@
 /************************************************************************************
 
-PublicHeader:   OVR.h
 Filename    :   Util_Interface.h
 Content     :   Simple interface, utilised by internal demos,
 				with access to wider SDK as needed. 

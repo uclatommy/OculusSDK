@@ -59,9 +59,9 @@ public:
     virtual bool Initialize(const ovrRenderAPIConfig* apiConfig,
                             unsigned distortionCaps);
 
-    virtual void SubmitEye(int eyeId, ovrTexture* eyeTexture);
+    virtual void SubmitEye(int eyeId, const ovrTexture* eyeTexture);
 
-    virtual void EndFrame(bool swapBuffers, unsigned char* latencyTesterDrawColor, unsigned char* latencyTester2DrawColor);
+    virtual void EndFrame(bool swapBuffers);
 
     // TBD: Make public?
     void         WaitUntilGpuIdle();
@@ -127,6 +127,7 @@ private:
     void initBuffersAndShaders();
     void initShaders();
     void initFullscreenQuad();
+	void initOverdrive();
     void destroy();
 
     void setViewport(const Recti& vp);
@@ -136,6 +137,8 @@ private:
     void renderPrimitives(const ShaderFill* fill, Buffer* vertices, Buffer* indices,
                           Matrix4f* viewMatrix, int offset, int count,
                           PrimitiveType rprim);
+
+    void renderEndFrame();
 
     void createDrawQuad();
     void renderLatencyQuad(unsigned char* latencyTesterDrawColor);
@@ -151,11 +154,13 @@ private:
     // D3DX device and utility variables.
     RenderParams        RParams;    
     Ptr<Texture>        pEyeTextures[2];
-	
+
     // U,V scale and offset needed for timewarp.
     ovrVector2f         UVScaleOffset[2][2];
     ovrSizei            EyeTextureSize[2];
     ovrRecti            EyeRenderViewport[2];
+
+	Ptr<Texture>        pOverdriveTextures[NumOverdriveTextures];
 
     //Ptr<Buffer>         mpFullScreenVertexBuffer;
 

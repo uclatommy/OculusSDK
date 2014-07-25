@@ -42,6 +42,7 @@ limitations under the License.
 #include "../../Kernel/OVR_Math.h"
 
 #if defined(OVR_OS_WIN32)
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <comdef.h> // for _COM_SMARTPTR_TYPEDEF()
 
